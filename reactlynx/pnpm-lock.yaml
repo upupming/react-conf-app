@@ -8,15 +8,15 @@ overrides:
   '@lynx-js/react-rsbuild-plugin': file:./packages/lynx-js-react-rsbuild-plugin-0.10.13.tgz
   '@lynx-js/react-alias-rsbuild-plugin': file:./packages/lynx-js-react-alias-rsbuild-plugin-0.10.13.tgz
   '@lynx-js/react-webpack-plugin': file:./packages/lynx-js-react-webpack-plugin-0.6.20.tgz
-  '@lynx-js/react': npm:@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372
+  '@lynx-js/react': file:./packages/lynx-js-react-0.112.6.tgz
 
 importers:
 
   .:
     dependencies:
       '@lynx-js/react':
-        specifier: npm:@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372
-        version: '@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24)'
+        specifier: file:packages/lynx-js-react-0.112.6.tgz
+        version: file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24)
     devDependencies:
       '@lynx-js/preact-devtools':
         specifier: ^5.0.1-6664329
@@ -26,7 +26,7 @@ importers:
         version: 0.4.1
       '@lynx-js/react-rsbuild-plugin':
         specifier: file:packages/lynx-js-react-rsbuild-plugin-0.10.13.tgz
-        version: file:packages/lynx-js-react-rsbuild-plugin-0.10.13.tgz(@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24))(webpack@5.101.3)
+        version: file:packages/lynx-js-react-rsbuild-plugin-0.10.13.tgz(@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24))(webpack@5.101.3)
       '@lynx-js/rspeedy':
         specifier: ^0.11.0
         version: 0.11.0(@rspack/core@1.5.0(@swc/helpers@0.5.17))(typescript@5.9.2)(webpack@5.101.3)
@@ -271,9 +271,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@hongzhiyuan/preact@10.24.0-00213bad':
-    resolution: {integrity: sha512-bHWp4ZDK5ZimcY+bTWw3S3xGiB8eROpZj0RK3FClNIaTOajb0b11CsT3K+pdeakgPgq1jWN3T2e2rfrPm40JsQ==}
-
   '@jest/schemas@29.6.3':
     resolution: {integrity: sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -365,15 +362,6 @@ packages:
     version: 0.10.13
     engines: {node: '>=18'}
 
-  '@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372':
-    resolution: {integrity: sha512-ljDVw6NX0WfZKDvJpIZ9M4adHeU+DTlY91nM6IY7MCNFPNtnbSp24rliC0a3Qq44hiDH4Hv38UEMAAXwsjBWhA==}
-    peerDependencies:
-      '@lynx-js/types': '*'
-      '@types/react': ^18
-    peerDependenciesMeta:
-      '@lynx-js/types':
-        optional: true
-
   '@lynx-js/react-refresh-webpack-plugin@0.3.4':
     resolution: {integrity: sha512-R5hpuih6TAzxtKngrrg7i6MQUBeMMQWZWR31UMF9ld98wH1WnRrMeq0ZjkmYZhDhQQA2ViQDaHkOvOrtU4yjhg==}
     version: 0.3.4
@@ -402,6 +390,16 @@ packages:
       '@lynx-js/react':
         optional: true
 
+  '@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz':
+    resolution: {integrity: sha512-DJ2IIrCucr0O2TNEngDnAYJLI8xW89W0SLqAjho7yXGGpUeuLKn7wpn9cgUth78uscBiYqEEhs7GJUo67M2xbQ==, tarball: file:packages/lynx-js-react-0.112.6.tgz}
+    version: 0.112.6
+    peerDependencies:
+      '@lynx-js/types': '*'
+      '@types/react': ^18
+    peerDependenciesMeta:
+      '@lynx-js/types':
+        optional: true
+
   '@lynx-js/rspeedy@0.11.0':
     resolution: {integrity: sha512-K4AGHxmSlQexBUqLKixsMP3SU1AEXjZcLCf6IcEuHBPkfoxaAJGBnQjspRGY9GEl2rx0us/bbNlrT8EnRqHHUA==}
     engines: {node: '>=18'}
@@ -428,6 +426,7 @@ packages:
 
   '@lynx-js/use-sync-external-store@1.5.0':
     resolution: {integrity: sha512-iXwLiGUBgfWLozCIh3ICe07x534p9CVlFS3/iGEiFOce58MLX6/PbAvWcE8qEhYaOKiQNe9hqUnS2RbyCqoqGg==}
+    version: 1.5.0
     peerDependencies:
       '@lynx-js/react': '*'
 
@@ -508,67 +507,56 @@ packages:
     resolution: {integrity: sha512-u72Mzc6jyJwKjJbZZcIYmd9bumJu7KNmHYdue43vT1rXPm2rITwmPWF0mmPzLm9/vJWxIRbao/jrQmxTO0Sm9w==}
     cpu: [arm]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.50.0':
     resolution: {integrity: sha512-S4UefYdV0tnynDJV1mdkNawp0E5Qm2MtSs330IyHgaccOFrwqsvgigUD29uT+B/70PDY1eQ3t40+xf6wIvXJyg==}
     cpu: [arm]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.50.0':
     resolution: {integrity: sha512-1EhkSvUQXJsIhk4msxP5nNAUWoB4MFDHhtc4gAYvnqoHlaL9V3F37pNHabndawsfy/Tp7BPiy/aSa6XBYbaD1g==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.50.0':
     resolution: {integrity: sha512-EtBDIZuDtVg75xIPIK1l5vCXNNCIRM0OBPUG+tbApDuJAy9mKago6QxX+tfMzbCI6tXEhMuZuN1+CU8iDW+0UQ==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-loongarch64-gnu@4.50.0':
     resolution: {integrity: sha512-BGYSwJdMP0hT5CCmljuSNx7+k+0upweM2M4YGfFBjnFSZMHOLYR0gEEj/dxyYJ6Zc6AiSeaBY8dWOa11GF/ppQ==}
     cpu: [loong64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-ppc64-gnu@4.50.0':
     resolution: {integrity: sha512-I1gSMzkVe1KzAxKAroCJL30hA4DqSi+wGc5gviD0y3IL/VkvcnAqwBf4RHXHyvH66YVHxpKO8ojrgc4SrWAnLg==}
     cpu: [ppc64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.50.0':
     resolution: {integrity: sha512-bSbWlY3jZo7molh4tc5dKfeSxkqnf48UsLqYbUhnkdnfgZjgufLS/NTA8PcP/dnvct5CCdNkABJ56CbclMRYCA==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-musl@4.50.0':
     resolution: {integrity: sha512-LSXSGumSURzEQLT2e4sFqFOv3LWZsEF8FK7AAv9zHZNDdMnUPYH3t8ZlaeYYZyTXnsob3htwTKeWtBIkPV27iQ==}
     cpu: [riscv64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-s390x-gnu@4.50.0':
     resolution: {integrity: sha512-CxRKyakfDrsLXiCyucVfVWVoaPA4oFSpPpDwlMcDFQvrv3XY6KEzMtMZrA+e/goC8xxp2WSOxHQubP8fPmmjOQ==}
     cpu: [s390x]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.50.0':
     resolution: {integrity: sha512-8PrJJA7/VU8ToHVEPu14FzuSAqVKyo5gg/J8xUerMbyNkWkO9j2ExBho/68RnJsMGNJq4zH114iAttgm7BZVkA==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.50.0':
     resolution: {integrity: sha512-SkE6YQp+CzpyOrbw7Oc4MgXFvTw2UIBElvAvLCo230pyxOLmYwRPwZ/L5lBe/VW/qT1ZgND9wJfOsdy0XptRvw==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-openharmony-arm64@4.50.0':
     resolution: {integrity: sha512-PZkNLPfvXeIOgJWA804zjSFH7fARBBCpCXxgkGDRjjAhRLOR8o0IGS01ykh5GYfod4c2yiiREuDM8iZ+pVsT+Q==}
@@ -667,25 +655,21 @@ packages:
     resolution: {integrity: sha512-Bvmk8h3tRhN9UgOtH+vK0SgFM3qEO36eJz7oddOl4lJQxBf2GNA87bGtkMtX+AVPz/PUn7r82uWxrlVNQHAbFg==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@rspack/binding-linux-arm64-musl@1.5.0':
     resolution: {integrity: sha512-bH7UwkbACDYT37YnN9kkhaF9niFFK9ndcdNvYFFr1oUT4W9Ie3V9b41EXijqp3pyh0mDSeeLPFY0aEx1t3e7Pw==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@rspack/binding-linux-x64-gnu@1.5.0':
     resolution: {integrity: sha512-xZ5dwNrE5KtpQyMd9israpJTcTQ3UYUUq23fTcNc79xE5aspkGixDFAYoql4YkhO0O+JWRmdSaFAn6jD+IQWQA==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@rspack/binding-linux-x64-musl@1.5.0':
     resolution: {integrity: sha512-mv65jYvcyYPkPZJ9kjSvTAcH0o7C5jfICWCQcMmN1tCGD3b8gmf9GqSZ8e+W/JkuvrJ05qTo/PvEq9nhu+pNIg==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@rspack/binding-wasm32-wasi@1.5.0':
     resolution: {integrity: sha512-8rVpl6xfaAFJgo1wCd+emksfl+/8nlehrtkmjY9bj79Ou+kp07L9e1B+UU0jfs8e7aLPntQuF68kzLHwYLzWIQ==}
@@ -757,28 +741,24 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@swc/react-compiler-linux-arm64-musl@1.13.5':
     resolution: {integrity: sha512-Xyrr6Qh/mRbuVS4QnO9b58fgAhao8yIxqWmXF3uJ75F84/UQz7BdLrsaDhxzxxS2xx1S/Cg8wl/aVCdvpEgo+g==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@swc/react-compiler-linux-x64-gnu@1.13.5':
     resolution: {integrity: sha512-1NPvWCpK8lgjPJiCEfWIH4/iv5Ad5+8+gTvbtb0FsQ6iou5NHw8NCxDWrowqNqj5RSSvnkjpWqCRBt8fQsAy9g==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@swc/react-compiler-linux-x64-musl@1.13.5':
     resolution: {integrity: sha512-A+4H/89wvx3HPGn43Cpv1FnZg5D/nw9+qVPcs26Jt/+qnO9xeid9DskRu3d/SRRaFaQ6rH6pt9DTzkJLFopnhQ==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@swc/react-compiler-win32-arm64-msvc@1.13.5':
     resolution: {integrity: sha512-/XNAtzSlM1vkWAhAhXeGKPBhHVoLjdHSNWzSn2aCazLMvb0Qu2yziO4DCYeiy+GGth25Si/z+By1Q9u3si4ZBw==}
@@ -915,49 +895,41 @@ packages:
     resolution: {integrity: sha512-34gw7PjDGB9JgePJEmhEqBhWvCiiWCuXsL9hYphDF7crW7UgI05gyBAi6MF58uGcMOiOqSJ2ybEeCvHcq0BCmQ==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@unrs/resolver-binding-linux-arm64-musl@1.11.1':
     resolution: {integrity: sha512-RyMIx6Uf53hhOtJDIamSbTskA99sPHS96wxVE/bJtePJJtpdKGXO1wY90oRdXuYOGOTuqjT8ACccMc4K6QmT3w==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@unrs/resolver-binding-linux-ppc64-gnu@1.11.1':
     resolution: {integrity: sha512-D8Vae74A4/a+mZH0FbOkFJL9DSK2R6TFPC9M+jCWYia/q2einCubX10pecpDiTmkJVUH+y8K3BZClycD8nCShA==}
     cpu: [ppc64]
     os: [linux]
-    libc: [glibc]
 
   '@unrs/resolver-binding-linux-riscv64-gnu@1.11.1':
     resolution: {integrity: sha512-frxL4OrzOWVVsOc96+V3aqTIQl1O2TjgExV4EKgRY09AJ9leZpEg8Ak9phadbuX0BA4k8U5qtvMSQQGGmaJqcQ==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
 
   '@unrs/resolver-binding-linux-riscv64-musl@1.11.1':
     resolution: {integrity: sha512-mJ5vuDaIZ+l/acv01sHoXfpnyrNKOk/3aDoEdLO/Xtn9HuZlDD6jKxHlkN8ZhWyLJsRBxfv9GYM2utQ1SChKew==}
     cpu: [riscv64]
     os: [linux]
-    libc: [musl]
 
   '@unrs/resolver-binding-linux-s390x-gnu@1.11.1':
     resolution: {integrity: sha512-kELo8ebBVtb9sA7rMe1Cph4QHreByhaZ2QEADd9NzIQsYNQpt9UkM9iqr2lhGr5afh885d/cB5QeTXSbZHTYPg==}
     cpu: [s390x]
     os: [linux]
-    libc: [glibc]
 
   '@unrs/resolver-binding-linux-x64-gnu@1.11.1':
     resolution: {integrity: sha512-C3ZAHugKgovV5YvAMsxhq0gtXuwESUKc5MhEtjBpLoHPLYM+iuwSj3lflFwK3DPm68660rZ7G8BMcwSro7hD5w==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@unrs/resolver-binding-linux-x64-musl@1.11.1':
     resolution: {integrity: sha512-rV0YSoyhK2nZ4vEswT/QwqzqQXw5I6CjoaYMOX0TqBlWhojUf8P94mvI7nuJTeaCkkds3QE4+zS8Ko+GdXuZtA==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@unrs/resolver-binding-wasm32-wasi@1.11.1':
     resolution: {integrity: sha512-5u4RkfxJm+Ng7IWgkzi3qrFOvLvQYnPBmjmZQ8+szTK/b31fQCnleNl1GgEt7nIsZRIf5PLhPwT0WM+q45x/UQ==}
@@ -978,6 +950,9 @@ packages:
     resolution: {integrity: sha512-lrW200hZdbfRtztbygyaq/6jP6AKE8qQN2KvPcJ+x7wiD038YtnYtZ82IMNJ69GJibV7bwL3y9FgK+5w/pYt6g==}
     cpu: [x64]
     os: [win32]
+
+  '@upupming/preact@10.24.0-remove-snapshot.1':
+    resolution: {integrity: sha512-B11mCo4/BGdDDxqD+UHu9/7stSVDNBfppBhLfRxOIZN5uYLWfs+jKNsKhFb7mL9v2dCbrXZGJUZIHBOtmXO2Ug==}
 
   '@vitest/expect@3.2.4':
     resolution: {integrity: sha512-Io0yyORnB6sikFlt8QW5K7slY4OjqNX9jmJQ02QDda8lyM6B5oNgVWoSoKPac8/kgnCUzuHQKrSLtu/uOqqrig==}
@@ -2977,8 +2952,6 @@ snapshots:
   '@esbuild/win32-x64@0.25.9':
     optional: true
 
-  '@hongzhiyuan/preact@10.24.0-00213bad': {}
-
   '@jest/schemas@29.6.3':
     dependencies:
       '@sinclair/typebox': 0.27.8
@@ -3077,39 +3050,39 @@ snapshots:
     dependencies:
       unrs-resolver: 1.11.1
 
-  '@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24)':
+  '@lynx-js/react-refresh-webpack-plugin@0.3.4(@lynx-js/react-webpack-plugin@file:packages/lynx-js-react-webpack-plugin-0.6.20.tgz(@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24))(@lynx-js/template-webpack-plugin@0.8.5))':
     dependencies:
-      '@types/react': 18.3.24
-      preact: '@hongzhiyuan/preact@10.24.0-00213bad'
-    optionalDependencies:
-      '@lynx-js/types': 3.4.11
+      '@lynx-js/react-webpack-plugin': file:packages/lynx-js-react-webpack-plugin-0.6.20.tgz(@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24))(@lynx-js/template-webpack-plugin@0.8.5)
 
-  '@lynx-js/react-refresh-webpack-plugin@0.3.4(@lynx-js/react-webpack-plugin@file:packages/lynx-js-react-webpack-plugin-0.6.20.tgz(@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24))(@lynx-js/template-webpack-plugin@0.8.5))':
-    dependencies:
-      '@lynx-js/react-webpack-plugin': file:packages/lynx-js-react-webpack-plugin-0.6.20.tgz(@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24))(@lynx-js/template-webpack-plugin@0.8.5)
-
-  '@lynx-js/react-rsbuild-plugin@file:packages/lynx-js-react-rsbuild-plugin-0.10.13.tgz(@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24))(webpack@5.101.3)':
+  '@lynx-js/react-rsbuild-plugin@file:packages/lynx-js-react-rsbuild-plugin-0.10.13.tgz(@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24))(webpack@5.101.3)':
     dependencies:
       '@lynx-js/css-extract-webpack-plugin': 0.6.2(@lynx-js/template-webpack-plugin@0.8.5)(webpack@5.101.3)
       '@lynx-js/react-alias-rsbuild-plugin': file:packages/lynx-js-react-alias-rsbuild-plugin-0.10.13.tgz
-      '@lynx-js/react-refresh-webpack-plugin': 0.3.4(@lynx-js/react-webpack-plugin@file:packages/lynx-js-react-webpack-plugin-0.6.20.tgz(@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24))(@lynx-js/template-webpack-plugin@0.8.5))
-      '@lynx-js/react-webpack-plugin': file:packages/lynx-js-react-webpack-plugin-0.6.20.tgz(@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24))(@lynx-js/template-webpack-plugin@0.8.5)
+      '@lynx-js/react-refresh-webpack-plugin': 0.3.4(@lynx-js/react-webpack-plugin@file:packages/lynx-js-react-webpack-plugin-0.6.20.tgz(@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24))(@lynx-js/template-webpack-plugin@0.8.5))
+      '@lynx-js/react-webpack-plugin': file:packages/lynx-js-react-webpack-plugin-0.6.20.tgz(@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24))(@lynx-js/template-webpack-plugin@0.8.5)
       '@lynx-js/runtime-wrapper-webpack-plugin': 0.1.3
       '@lynx-js/template-webpack-plugin': 0.8.5
-      '@lynx-js/use-sync-external-store': 1.5.0(@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24))
+      '@lynx-js/use-sync-external-store': 1.5.0(@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24))
       background-only: 0.0.1
     optionalDependencies:
-      '@lynx-js/react': '@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24)'
+      '@lynx-js/react': file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24)
     transitivePeerDependencies:
       - webpack
 
-  '@lynx-js/react-webpack-plugin@file:packages/lynx-js-react-webpack-plugin-0.6.20.tgz(@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24))(@lynx-js/template-webpack-plugin@0.8.5)':
+  '@lynx-js/react-webpack-plugin@file:packages/lynx-js-react-webpack-plugin-0.6.20.tgz(@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24))(@lynx-js/template-webpack-plugin@0.8.5)':
     dependencies:
       '@lynx-js/template-webpack-plugin': 0.8.5
       '@lynx-js/webpack-runtime-globals': 0.0.6
       tiny-invariant: 1.3.3
     optionalDependencies:
-      '@lynx-js/react': '@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24)'
+      '@lynx-js/react': file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24)
+
+  '@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24)':
+    dependencies:
+      '@types/react': 18.3.24
+      preact: '@upupming/preact@10.24.0-remove-snapshot.1'
+    optionalDependencies:
+      '@lynx-js/types': 3.4.11
 
   '@lynx-js/rspeedy@0.11.0(@rspack/core@1.5.0(@swc/helpers@0.5.17))(typescript@5.9.2)(webpack@5.101.3)':
     dependencies:
@@ -3155,9 +3128,9 @@ snapshots:
     dependencies:
       csstype: 3.1.3
 
-  '@lynx-js/use-sync-external-store@1.5.0(@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24))':
+  '@lynx-js/use-sync-external-store@1.5.0(@lynx-js/react@file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24))':
     dependencies:
-      '@lynx-js/react': '@lynx-js/react-canary@0.112.7-canary-20250909-8ec45372(@lynx-js/types@3.4.11)(@types/react@18.3.24)'
+      '@lynx-js/react': file:packages/lynx-js-react-0.112.6.tgz(@lynx-js/types@3.4.11)(@types/react@18.3.24)
 
   '@lynx-js/webpack-dev-transport@0.2.0': {}
 
@@ -3691,6 +3664,8 @@ snapshots:
 
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
+
+  '@upupming/preact@10.24.0-remove-snapshot.1': {}
 
   '@vitest/expect@3.2.4':
     dependencies:
