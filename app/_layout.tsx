@@ -136,42 +136,6 @@ export default function Layout() {
                   presentation: "modal",
                 }}
               />
-              <Stack.Screen
-                name="speaker/[speakerId]"
-                options={{
-                  presentation: "modal",
-                  headerLeft: () =>
-                    Platform.OS === "ios" ? <BackButton /> : null,
-                  headerStyle: {
-                    backgroundColor: tabBarBackgroundColor,
-                  },
-                  headerTitleAlign: "center",
-                  headerTitle: (props) => (
-                    <ThemedText fontSize={24} fontWeight="bold">
-                      {props.children}
-                    </ThemedText>
-                  ),
-                }}
-              />
-              <Stack.Screen
-                name="secretModal"
-                options={{
-                  presentation: "modal",
-                  title: "Secret Modal",
-                  headerTitleAlign: "center",
-                  headerTitle: (props) => (
-                    <ThemedText fontSize={24} fontWeight="bold">
-                      {props.children}
-                    </ThemedText>
-                  ),
-                  ...(colorScheme === "dark"
-                    ? {
-                        headerStyle: { backgroundColor: theme.colorDarkBlue },
-                        headerTitleStyle: { color: "white" },
-                      }
-                    : {}),
-                }}
-              />
             </Stack>
             <OfflineBanner />
           </ThemeProvider>

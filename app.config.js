@@ -12,6 +12,7 @@ const EAS_APP_OWNER = "expo";
 
 const IS_DEV = process.env.APP_VARIANT === "development";
 const IS_PREVIEW = process.env.APP_VARIANT === "preview";
+const reactCompiler = process.env.REACT_COMPILER === "true";
 
 const getName = () => {
   if (IS_DEV) {
@@ -138,7 +139,7 @@ export default {
       policy: "appVersion",
     },
     experiments: {
-      reactCompiler: true,
+      reactCompiler,
     },
   },
 };

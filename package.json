@@ -4,7 +4,10 @@
   "main": "expo-router/entry",
   "private": true,
   "scripts": {
-    "start": "expo start",
+    "start": "REACT_COMPILER=false expo start",
+    "start:rc": "REACT_COMPILER=true NODE_ENV=production expo start",
+    "atlas:": "REACT_COMPILER=false EXPO_ATLAS=true npx expo export",
+    "atlas:rc": "REACT_COMPILER=true EXPO_ATLAS=true npx expo export",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
@@ -69,6 +72,7 @@
     "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-react-compiler": "^19.1.0-rc.1",
     "eslint-plugin-react-native": "^5.0.0",
+    "expo-atlas": "^0.4.0",
     "patch-package": "^8.0.0",
     "prettier": "^3.2.5",
     "typescript": "~5.8.3"
@@ -78,5 +82,6 @@
     "transformIgnorePatterns": [
       "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.15.1+sha512.34e538c329b5553014ca8e8f4535997f96180a1d0f614339357449935350d924e22f8614682191264ec33d1462ac21561aff97f6bb18065351c162c7e8f6de67"
 }

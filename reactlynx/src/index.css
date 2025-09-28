@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "FreightSansProLight-Regular";
+  src: url("./assets/fonts/FreightSansProLight-Regular.ttf");
+}
+
+@font-face {
+  font-family: "FreightSansProLight-Italic";
+  src: url("./assets/fonts/FreightSansProLight-Italic.ttf");
+}
+
+@font-face {
+  font-family: "FreightSansProBook-Regular";
+  src: url("./assets/fonts/FreightSansProBook-Regular.ttf");
+}
+
+@font-face {
+  font-family: "FreightSansProBook-Italic";
+  src: url("./assets/fonts/FreightSansProBook-Italic.ttf");
+}
+
+@font-face {
+  font-family: "FreightSansProBold-Regular";
+  src: url("./assets/fonts/FreightSansProBold-Regular.ttf");
+}
+
+@font-face {
+  font-family: "FreightSansProBold-Italic";
+  src: url("./assets/fonts/FreightSansProBold-Italic.ttf");
+}
