@@ -1,0 +1,77 @@
+.TalkCard_container {
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+}
+.dark #talk-card-container{
+  background-color: var(--color-black);
+  box-shadow: var(--shadow);
+}
+.TalkCard_heading {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding-left: 12px;
+  padding-top: 12px;
+  padding-right: 12px;
+}
+.light {
+  & .TalkCard_container {
+    &.primary{
+      & .TalkCard_heading {
+        background-color: var(--color-react-light-blue);
+      }
+      & .TalkCard_content {
+        background-color: rgba(88,196,220, 0.15);
+      } 
+    }
+    &.secondary{
+      & .TalkCard_heading {
+        background-color: var(--color-light-green);
+      }
+      & .TalkCard_content {
+        background-color: rgba(155,223,177, 0.15);
+      } 
+    }
+  }
+}
+.dark {
+  & .TalkCard_container {
+    &.primary{
+      & .TalkCard_heading {
+        background-color: rgba(88,196,220, 0.5);
+      }
+      & .TalkCard_content {
+        background-color: rgba(88,196,220, 0.15);
+      } 
+    }
+    &.secondary{
+      & .TalkCard_heading {
+        background-color: rgba(88,196,220, 0.15);
+      }
+      & .TalkCard_content {
+        background-color: rgba(155,223,177, 0.15);
+      } 
+    }
+  }
+}
+.bottom-12 {
+  margin-bottom: var(--space-12);
+}
+.TalkCard_speaker {
+  margin-bottom: 12px;
+}
+.TalkCard_speakerDetails {
+  flex-grow: 1;
+  justify-content: center;
+}
+.TalkCard_content {
+  padding-top: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.TalkCard_timeAndBookmark {
+  justify-content: space-between;
+}

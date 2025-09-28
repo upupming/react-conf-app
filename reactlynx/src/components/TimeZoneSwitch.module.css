@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  margin-left: var(--space-16);
+  margin-right: var(--space-16);
+  flex-direction: row;
+  align-items: center;
+  height: 55px;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.switch {
+  margin-left: var(--space-8);
+  margin-right: var(--space-8);
+}

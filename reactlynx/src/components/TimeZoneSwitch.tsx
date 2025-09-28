@@ -1,25 +1,8 @@
 import { useReactConfStore } from "@/store/reactConfStore.js";
-import { ThemedText, useThemeColor } from "./Themed.jsx";
-import { theme } from "@/theme.js";
+import { ThemedText } from "./Themed.jsx";
 // import { useActionSheet } from '@/polyfill.js';
 import { getCurrentTimezone } from "@/utils/formatDate.js";
-
-const styles = {
-  container: {
-    display: "flex",
-    marginLeft: `${theme.space16}px`,
-    marginRight: `${theme.space16}px`,
-    flexDirection: "row",
-    alignItems: "center",
-    height: "55px",
-    justifyContent: "flex-end",
-    flexGrow: 1,
-  },
-  switch: {
-    marginLeft: `${theme.space8}px`,
-    marginRight: `${theme.space8}px`,
-  },
-} as const;
+import styles from "./TimeZoneSwitch.module.css";
 
 export function TimeZoneSwitch() {
   const shouldUseLocalTz = useReactConfStore((state) => state.shouldUseLocalTz);
@@ -56,7 +39,7 @@ export function TimeZoneSwitch() {
   };
 
   return (
-    <view style={styles.container} bindtap={onPress}>
+    <view className={styles.container} bindtap={onPress}>
       <ThemedText fontSize={"14px"} fontWeight="medium">
         {shouldUseLocalTz ? "Local Time " : "Venue Time Zone "}
         <ThemedText fontSize={"12px"} fontWeight="light">

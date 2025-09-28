@@ -1,0 +1,59 @@
+.speaker-image-fallback {
+  background-color: #1a2d3d;
+  justify-content: center;
+  align-items: center;
+}
+
+.speaker-image-container {
+  margin-right: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  &#speaker-image-container {
+    background-color: rgba(255,255,255,0.15);
+  }
+
+}
+.dark #speaker-image-container {
+    background-color: rgba(0,0,0,0.15);
+}
+
+.speaker-image-profile-image {
+  width: 50px;
+  height: 70px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.medium {
+  & .image {
+    width: 60px;
+    height: 60px;
+  }
+  & .react-logo {
+    width: 30px;
+    height: 30px;
+  }
+}
+.large {
+  & .image {
+    width: 100px;
+    height: 100px;
+  }
+  & .react-logo {
+    width: 50px;
+    height: 50px;
+  }
+}
+.xlarge {
+  & .image {
+    width: 200px;
+    height: 200px;
+  }
+  & .react-logo {
+    width: 100px;
+    height: 100px;
+  }
+}

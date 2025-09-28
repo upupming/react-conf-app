@@ -1,25 +1,7 @@
 import { COLLAPSED_HEADER, EXPANDED_HEADER, ROW_HEIGHT } from "../consts.js";
-import { theme } from "../theme.js";
 import { ThemedText, ThemedView } from "./Themed.jsx";
 import reactLogo from "../assets/images/react-logo.png";
-
-const styles = {
-  reactImage: {
-    width: `75px`,
-    height: `75px`,
-  },
-  logoText: {
-    paddingLeft: `${theme.space8}px`,
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingLeft: `${theme.space8}px`,
-    paddingRight: `${theme.space8}px`,
-  },
-} as const;
+import "./ReactConfHeader.css";
 
 const interpolateHeader = (
   scrollOffset: number,
@@ -74,41 +56,29 @@ export function ReactConfHeader({ scrollOffset }: ReactConfHeaderProps) {
 
   return (
     <ThemedView
-      style={{
-        ...styles["header"],
-        ...headerStyle,
-      }}
-      darkColor={theme.colorDarkBlue}
-      lightColor={theme.colorWhite}
+      className={`flex-row ReactConfHeader_header`}
+      style={headerStyle}
       animated
     >
       <image
         src={reactLogo}
-        style={{
-          ...styles["reactImage"],
-          ...animatedLogoStyle,
-        }}
+        className="ReactConfHeader_reactImage"
+        style={animatedLogoStyle}
       />
       <view>
         <ThemedText
           fontSize={"36px"}
           fontWeight="bold"
-          style={{
-            ...styles["logoText"],
-            ...firstLineStyle,
-          }}
-          darkColor={theme.colorWhite}
-          lightColor={theme.colorBlack}
+          className="ReactConfHeader_logoText"
+          style={firstLineStyle}
           animated
         >
           REACT
         </ThemedText>
         <ThemedText
           fontSize={"24px"}
-          style={{
-            ...styles["logoText"],
-            ...secondLineStyle,
-          }}
+          className="ReactConfHeader_logoText"
+          style={secondLineStyle}
           animated
         >
           CONF 2024

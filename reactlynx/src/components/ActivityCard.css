@@ -1,0 +1,9 @@
+.ActivityCard_container {
+  margin: var(--space-16);
+  padding: var(--space-12);
+  border-radius: var(--radius-10);
+}
+
+.ActivityCard_row {
+  justify-content: space-between;
+}

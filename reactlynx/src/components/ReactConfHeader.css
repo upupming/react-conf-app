@@ -1,0 +1,15 @@
+.ReactConfHeader_reactImage {
+  width: 75px;
+  height: 75px;
+}
+
+.ReactConfHeader_logoText {
+  padding-left: var(--space-8);
+}
+
+.ReactConfHeader_header {
+  align-items: center;
+  justify-content: center;
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+}

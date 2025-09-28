@@ -1,5 +1,4 @@
-import { theme } from "./theme.js";
-import { ThemedText, ThemedView, useThemeColor } from "./components/Themed.jsx";
+import { ThemedText, ThemedView } from "./components/Themed.jsx";
 import { interpolate, useSafeAreaInsets } from "./polyfill.js";
 import { COLLAPSED_HEADER, EXPANDED_HEADER, ROW_HEIGHT } from "./consts.js";
 import { ReactConfHeader } from "./components/ReactConfHeader.jsx";
@@ -10,41 +9,7 @@ import { useState, useRef } from "@lynx-js/react";
 import type { Session } from "@/types.js";
 import { ActivityCard } from "./components/ActivityCard.jsx";
 import { TalkCard } from "@/components/TalkCard.jsx";
-
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: 1,
-  },
-  sectionHeader: {
-    marginBottom: `${theme.space12}px`,
-    paddingLeft: `${theme.space16}px`,
-    paddingRight: `${theme.space16}px`,
-    paddingTop: `${theme.space12}px`,
-    paddingBottom: `${theme.space12}px`,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderBottomWidth: "3px",
-  },
-  row: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: `${theme.space8}px`,
-    backgroundColor: theme.colorThemeLightGrey,
-    overflow: "hidden",
-  },
-  header: {
-    position: "absolute",
-    top: 0,
-    zIndex: 1,
-    width: "100%",
-  },
-} as const;
+import "./App.css";
 
 interface HeaderProps {
   scrollOffset: number;
@@ -52,10 +17,6 @@ interface HeaderProps {
 }
 
 function Header({ scrollOffset, refreshing }: HeaderProps) {
-  const settingsBgColor = useThemeColor({
-    light: theme.colorThemeGrey,
-    dark: "rgba(255, 255, 255, 0.2)",
-  });
   const animatedHeader = {
     height: `${interpolate(
       scrollOffset,
@@ -68,39 +29,30 @@ function Header({ scrollOffset, refreshing }: HeaderProps) {
     paddingTop: `${interpolate(
       scrollOffset,
       [0, ROW_HEIGHT],
-      [theme.space8, 0],
+      [8, 0],
     )}px`,
     paddingBottom: `${interpolate(
       scrollOffset,
       [0, ROW_HEIGHT],
-      [theme.space8, 0],
+      [8, 0],
     )}px`,
   };
   // console.log('animatedRow', animatedRow);
 
   return (
     <view
-      style={{
-        ...styles["header"],
-        ...animatedHeader,
-      }}
+      className="App_header" 
+      style={animatedHeader}
     >
       <ReactConfHeader scrollOffset={scrollOffset} />
       <view
-        style={{
-          ...styles["row"],
-          backgroundColor: settingsBgColor,
-          ...animatedRow,
-        }}
+        className="App_row"
+        style={animatedRow}
       >
         <TimeZoneSwitch />
       </view>
       <view
-        style={{
-          position: "absolute",
-          right: "20px",
-          top: "15px",
-        }}
+        className="App_activityIndicator"
       >
         {/* <ActivityIndicator
 				size="small"
@@ -129,8 +81,6 @@ const SectionListButton = ({
     <view bindtap={onPress}>
       <ThemedText
         fontWeight={isBold ? "bold" : "medium"}
-        lightColor={theme.colorWhite}
-        darkColor={theme.colorBlack}
         fontSize={"24px"}
         style={opacity}
       >
@@ -167,10 +117,6 @@ export function Schedule() {
   };
   // console.log('paddingTopStyle', scrollOffset, paddingTopStyle.paddingTop);
 
-  const sectionListBackgroundColor = useThemeColor({
-    light: theme.colorWhite,
-    dark: theme.colorDarkestBlue,
-  });
 
   const isRefreshing = useReactConfStore((state) => !!state.isRefreshing);
   const [shouldShowDayOneHeader, setShouldShowDayOneHeader] = useState(true);
@@ -203,27 +149,24 @@ export function Schedule() {
 
   return (
     <ThemedView
+      className="App_container"
       style={{
-        ...styles["container"],
         paddingTop: `${insets.top}px`,
       }}
-      darkColor={theme.colorDarkBlue}
-      lightColor={theme.colorWhite}
     >
       <ThemedView
+        className="App_container"
         style={{
-          ...styles["container"],
           paddingTop: `${Math.max(0, EXPANDED_HEADER - scrollOffset)}px`,
         }}
         animated
       >
         <list
+          custom-list-name="list-container"
+          experimental-disable-platform-implementation={true}
           ref={scrollRef}
-          style={{
-            backgroundColor: sectionListBackgroundColor,
-            paddingBottom: `${EXPANDED_HEADER}px`,
-            height: "100%",
-          }}
+          class="App_list"
+          span-count={1}
           bindscroll={(e) => {
             // console.log('list bindscroll', e, e.detail.scrollTop);
 
@@ -232,18 +175,9 @@ export function Schedule() {
           sticky
         >
           <list-item key="header" item-key="header" sticky-top>
-            <ThemedView
-              style={{
-                ...styles.sectionHeader,
-                ...{
-                  borderBottomColor: shouldShowDayOneHeader
-                    ? theme.colorReactLightBlue
-                    : theme.colorLightGreen,
-                },
-                ...paddingTopStyle,
-              }}
-              lightColor={theme.colorWhite}
-              darkColor={theme.colorDarkBlue}
+             <ThemedView
+               className={"App_sectionHeader " + (shouldShowDayOneHeader ? 'primary' : 'secondary')}
+              style={paddingTopStyle}
             >
               <SectionListButton
                 title="Day 1"
@@ -264,16 +198,8 @@ export function Schedule() {
             if (item.type === "section-header") {
               return (
                 <list-item key="header-2" item-key="header-2" sticky-top>
-                  <ThemedView
-                    style={{
-                      ...styles.sectionHeader,
-                      borderBottomColor: isDayOne
-                        ? theme.colorReactLightBlue
-                        : theme.colorLightGreen,
-                      ...paddingTopStyle,
-                    }}
-                    lightColor={theme.colorWhite}
-                    darkColor={theme.colorDarkBlue}
+                   <ThemedView
+                     className={"App_sectionHeader " + (isDayOne ? 'primary' : 'secondary')}
                   >
                     <SectionListButton
                       title="Day 1"

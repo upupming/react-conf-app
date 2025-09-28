@@ -1,9 +1,9 @@
 // import { Bookmark } from "./Bookmark";
 import { SpeakerImage } from "./SpeakerImage.jsx";
-import { ThemedText, ThemedView, useThemeColor } from "./Themed.jsx";
-import { theme } from "../theme.js";
+import { ThemedText, ThemedView } from "./Themed.jsx";
 import type { Session, Speaker } from "../types.js";
 import { formatSessionTime } from "../utils/formatDate.js";
+import "./TalkCard.css";
 
 import { useReactConfStore } from "@/store/reactConfStore.js";
 import { useNavigate } from "react-router";
@@ -15,8 +15,6 @@ type Props = {
 
 export function TalkCard({ session, isDayOne }: Props) {
   const shouldUseLocalTz = useReactConfStore((state) => state.shouldUseLocalTz);
-
-  const shadow = useThemeColor({ light: theme.dropShadow, dark: undefined });
   const nav = useNavigate();
 
   return (
@@ -40,44 +38,27 @@ export function TalkCard({ session, isDayOne }: Props) {
       }}
     >
       <ThemedView
-        lightColor={theme.colorWhite}
-        darkColor={theme.colorBlack}
-        style={{
-          ...styles.container,
-          ...shadow,
-        }}
+        className={"TalkCard_container" + (isDayOne ? "primary" : "secondary")}
       >
         <ThemedView
-          lightColor={
-            isDayOne ? theme.colorReactLightBlue : theme.colorLightGreen
-          }
-          darkColor={
-            isDayOne ? "rgba(88,196,220, 0.5)" : "rgba(155,223,177, 0.5)"
-          }
-          style={styles.heading}
+          className="TalkCard_heading"
         >
-          <view style={styles.timeAndBookmark}>
+          <view className={`flex-row TalkCard_timeAndBookmark`}>
             <ThemedText fontSize={"18px"} fontWeight="medium">
               {formatSessionTime(session, shouldUseLocalTz)}
             </ThemedText>
             {/* <Bookmark session={session} /> */}
           </view>
           <ThemedText
+            class="bottom-12"
             fontSize={"20px"}
             fontWeight="bold"
-            marginBottom={`${theme.space12}px`}
           >
             {session.title}
           </ThemedText>
         </ThemedView>
-        <ThemedView
-          style={styles.content}
-          lightColor={
-            isDayOne ? "rgba(88,196,220, 0.15)" : "rgba(155,223,177, 0.15)"
-          }
-          darkColor={
-            isDayOne ? "rgba(88,196,220, 0.15)" : "rgba(155,223,177, 0.15)"
-          }
+        <ThemedView 
+          className="TalkCard_content"
         >
           {session.speakers.map((speaker) => (
             <SpeakerDetails speaker={speaker} key={speaker.id} />
@@ -91,9 +72,9 @@ export function TalkCard({ session, isDayOne }: Props) {
 
 function SpeakerDetails({ speaker }: { speaker: Speaker }) {
   return (
-    <view style={styles.speaker}>
+    <view className={`flex-row TalkCard_speaker`}>
       <SpeakerImage profilePicture={speaker.profilePicture} animated />
-      <view style={styles.speakerDetails}>
+      <view className="TalkCard_speakerDetails">
         <ThemedText fontSize={"18px"} fontWeight="bold">
           {speaker.fullName}
         </ThemedText>
@@ -104,40 +85,3 @@ function SpeakerDetails({ speaker }: { speaker: Speaker }) {
     </view>
   );
 }
-
-const styles = {
-  container: {
-    marginLeft: `${theme.space16}px`,
-    marginRight: `${theme.space16}px`,
-    marginBottom: `${theme.space16}px`,
-    borderRadius: `${theme.borderRadius10}px`,
-  },
-  heading: {
-    borderTopRightRadius: `${theme.borderRadius10}px`,
-    borderTopLeftRadius: `${theme.borderRadius10}px`,
-    paddingLeft: `${theme.space12}px`,
-    paddingTop: `${theme.space12}px`,
-    paddingRight: `${theme.space12}px`,
-  },
-  speaker: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: `${theme.space12}px`,
-  },
-  speakerDetails: {
-    flexGrow: 1,
-    justifyContent: "center",
-  },
-  content: {
-    paddingTop: `${theme.space12}px`,
-    paddingLeft: `${theme.space12}px`,
-    paddingRight: `${theme.space12}px`,
-    borderBottomRightRadius: `${theme.borderRadius10}px`,
-    borderBottomLeftRadius: `${theme.borderRadius10}px`,
-  },
-  timeAndBookmark: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-} as const;

@@ -27,3 +27,81 @@
   font-family: "FreightSansProBold-Italic";
   src: url("./assets/fonts/FreightSansProBold-Italic.ttf");
 }
+
+.root{
+  width: 100vw;
+  height: 100vh;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-1 {
+  flex-grow: 1;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.h-screen {
+  max-height: 100vh;
+}
+
+:root {
+  /* Colors */
+  --color-white: #FFFFFF;
+  --color-black: #051726;
+  --color-dark-blue: #051726;
+  --color-darkest-blue: #091725;
+  --color-light-green: #9bdfb1;
+  --color-dark-green: #1ac9a2;
+  --color-grey: #adb5bd;
+  --color-react-light-blue: #58c4dc;
+  --color-react-dark-blue: #087ea4;
+  --color-theme-light-grey: #fcfbfe;
+  --color-theme-grey: #f5f4f3;
+
+  --dark-active-content: rgba(255,255,255,0.3);
+  --light-active-content: rgba(0,0,0,0.1);
+
+  /* Spacing */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+
+
+  /* Radii */
+  --radius-6: 6px;
+  --radius-10: 10px;
+  --radius-20: 20px;
+
+  --shadow: 0px 0px 2px rgba(173,181,189,0.4);
+}
+
+.light:root {
+  --color: #051726;
+  --color-background: #ffffff;
+}
+
+.dark:root {
+  --color: #ffffff;
+  --color-background: #051726;
+}

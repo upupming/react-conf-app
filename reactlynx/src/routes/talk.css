@@ -1,0 +1,92 @@
+.talk_modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  margin-top: 120px;
+}
+
+.talk_container {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.talk_header {
+  height: 250px;
+  padding-top: 50px;
+  padding-left: var(--space-16);
+  padding-right: var(--space-16);
+  overflow: hidden;
+}
+
+.talk_contentContainer {
+  border-bottom-right-radius: var(--radius-20);
+  border-bottom-left-radius: var(--radius-20);
+}
+
+.talk_speaker {
+  margin-bottom: var(--space-12);
+}
+
+.talk_speakerDetails {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.talk_talkTitle {
+  text-align: center;
+}
+
+.talk_centered {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.talk_reactLogo {
+  position: absolute;
+  right: -100px;
+  top: 30%;
+  height: 300px;
+  width: 300px;
+  opacity: 0.2;
+}
+
+.talk_sectionContainer {
+  margin-bottom: var(--space-24);
+}
+
+.talk_content {
+  padding-top: var(--space-16);
+  padding-left: var(--space-16);
+  padding-right: var(--space-16);
+}
+
+.talk_headerBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.talk_headerBackgroundBlur {
+  flex-grow: 1;
+  filter: blur(40px);
+}
+
+.talk_closeButtonContainer {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.talk_closeButtonText {
+  font-size: var(--space-24);
+}

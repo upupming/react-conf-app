@@ -1,7 +1,7 @@
 import { ThemedText, ThemedView } from "./Themed.jsx";
+import "./ActivityCard.css";
 
 import { useReactConfStore } from "@/store/reactConfStore.js";
-import { theme } from "@/theme.js";
 import type { Session } from "@/types.js";
 import { formatSessionTime } from "@/utils/formatDate.js";
 
@@ -13,11 +13,11 @@ export function ActivityCard({ session }: Props) {
   const shouldUseLocalTz = useReactConfStore((state) => state.shouldUseLocalTz);
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView className="ActivityCard_container">
       <ThemedText fontSize={`16px`} fontWeight="medium">
         {formatSessionTime(session, shouldUseLocalTz)}
       </ThemedText>
-      <view style={styles.row}>
+      <view className={`flex-row ActivityCard_row`}>
         <ThemedText fontSize={`20px`} fontWeight="bold">
           {session.title}
         </ThemedText>
@@ -28,16 +28,3 @@ export function ActivityCard({ session }: Props) {
     </ThemedView>
   );
 }
-
-const styles = {
-  container: {
-    margin: `${theme.space16}px`,
-    padding: `${theme.space12}px`,
-    borderRadius: `${theme.borderRadius10}px`,
-  },
-  row: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-} as const;

@@ -7,8 +7,8 @@ import {
 import { useReactConfStore } from "@/store/reactConfStore.js";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { theme } from "@/theme.js";
 import { ThemedText, ThemedView } from "@/components/Themed.jsx";
+import "./talk.css";
 
 import type { Session, Speaker } from "@/types.js";
 import { NotFound } from "@/components/NotFound.jsx";
@@ -49,18 +49,10 @@ function HeaderBackgroundAndroid({
   return (
     <ThemedView
       animated
-      darkColor={theme.colorDarkBlue}
-      lightColor={theme.colorWhite}
+      className='talk_headerBackground'
       style={{
         ...animatedStyle,
-        ...{
-          height: `${headerHeight}px`,
-          position: "absolute",
-          elevation: 4,
-          top: 0,
-          left: 0,
-          right: 0,
-        },
+        height: `${headerHeight}px`,
       }}
     />
   );
@@ -79,15 +71,9 @@ function HeaderBackgroundIOS({
 
   return (
     <view
+      className="talk_headerBackground"
       style={{
         ...animatedStyle,
-        ...{
-          position: "absolute",
-          elevation: 4,
-          top: 0,
-          left: 0,
-          right: 0,
-        },
       }}
     >
       <view
@@ -97,10 +83,9 @@ function HeaderBackgroundIOS({
         //     ? "systemThinMaterialLight"
         //     : "systemThinMaterialDark"
         // }
+        className="talk_headerBackgroundBlur"
         style={{
           height: `${headerHeight}px`,
-          flexGrow: 1,
-          filter: "blur(40px)",
         }}
       />
     </view>
@@ -109,9 +94,9 @@ function HeaderBackgroundIOS({
 
 function SpeakerDetails({ speaker }: { speaker: Speaker }) {
   return (
-    <view style={styles.speaker}>
+    <view className={`flex-row talk_speaker`}>
       <SpeakerImage profilePicture={speaker.profilePicture} />
-      <view style={styles.speakerDetails}>
+      <view className={`flex-column talk_speakerDetails`}>
         <ThemedText fontSize={"18px"} fontWeight="bold">
           {speaker.fullName}
         </ThemedText>
@@ -129,7 +114,7 @@ function Section({ title, value }: { title: string; value: string | null }) {
   }
 
   return (
-    <view style={styles.sectionContainer}>
+    <view className="talk_sectionContainer">
       <ThemedText fontSize={"18px"} fontWeight="bold">
         {title}
       </ThemedText>
@@ -158,30 +143,14 @@ export default function TalkDetail() {
   const nav = useNavigate();
 
   return (
-    <view
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: "rgba(0, 0, 0, 0.4)",
-        zIndex: 2,
-        marginTop: "120px",
-      }}
-    >
-      <ThemedView
-        style={styles.container}
-        darkColor={theme.colorDarkBlue}
-        lightColor={theme.colorWhite}
-      >
+    <view className="talk_modal-overlay">
+      <ThemedView className="talk_container">
         {talk ? (
           <>
             <scroll-view
+              className="talk_sectionContainer talk_contentContainer"
               style={{
-                ...styles.container,
-                ...styles.contentContainer,
-                paddingBottom: `${insets.bottom + theme.space24 * 10}px`,
+                paddingBottom: `${insets.bottom + 24 * 10}px`,
                 height: "100%",
                 borderRadius: "20px",
               }}
@@ -191,65 +160,33 @@ export default function TalkDetail() {
               }}
               scroll-y
             >
-              <ThemedView
-                animated
-                lightColor={
-                  isDayOne ? theme.colorReactLightBlue : theme.colorLightGreen
-                }
-                darkColor={
-                  isDayOne ? "rgba(88,196,220, 0.5)" : "rgba(155,223,177, 0.5)"
-                }
-                style={{
-                  ...styles.header,
-                  ...headerStyle,
-                }}
+              <ThemedView 
+                animated 
+                className="talk_header" 
+                style={headerStyle}
               >
                 <view
-                  style={{
-                    position: "absolute",
-                    top: "20px",
-                    left: "20px",
-                    width: "20px",
-                    height: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                  className="talk_closeButtonContainer"
                   bindtap={() => {
                     console.profile(`TalkPage Closing ${talkId}`);
                     console.profileEnd(`TalkPage Closing ${talkId}`);
                     nav(-1);
                   }}
                 >
-                  <text
-                    style={{
-                      fontSize: "24px",
-                    }}
-                  >
-                    &times;
-                  </text>
+                  <text className="talk_closeButtonText">&times;</text>
                 </view>
-                <image
-                  src={reactLogo}
-                  style={{
-                    ...styles.reactLogo,
-                  }}
-                />
-                <view style={styles.centered}>
+                <image src={reactLogo} className="talk_reactLogo" />
+                <view className="talk_centered">
                   <ThemedText
                     fontWeight="bold"
                     fontSize={"32px"}
-                    style={styles.talkTitle}
+                    className="talk_talkTitle"
                   >
                     {talk?.title}
                   </ThemedText>
                 </view>
               </ThemedView>
-              <ThemedView
-                darkColor={theme.colorDarkBlue}
-                lightColor={theme.colorWhite}
-                style={styles.content}
-              >
+              <ThemedView className="talk_content">
                 {talk.speakers.map((speaker) => (
                   // <Link
                   //   push
@@ -267,11 +204,7 @@ export default function TalkDetail() {
                 ))}
                 <Section
                   title="Date"
-                  value={
-                    isDayOne
-                      ? "May 15, 2024 (Conference Day 1)"
-                      : "May 15, 2024 (Conference Day 2)"
-                  }
+                  value={isDayOne ? "May 15, 2024 (Conference Day 1)" : "May 15, 2024 (Conference Day 2)"}
                 />
                 <Section
                   title="Time"
@@ -295,56 +228,3 @@ export default function TalkDetail() {
     </view>
   );
 }
-
-const styles = {
-  container: {
-    flexGrow: 1,
-    height: "100%",
-  },
-  header: {
-    height: `250px`,
-    paddingTop: `50px`,
-    paddingLeft: `${theme.space16}px`,
-    paddingRight: `${theme.space16}px`,
-    overflow: "hidden",
-  },
-  contentContainer: {
-    borderBottomRightRadius: `${theme.borderRadius20}px`,
-    borderBottomLeftRadius: `${theme.borderRadius20}px`,
-  },
-  speaker: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: `${theme.space12}px`,
-  },
-  speakerDetails: {
-    flexGrow: 1,
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-  },
-  talkTitle: {
-    textAlign: "center",
-  },
-  centered: {
-    flexGrow: 1,
-    display: "flex",
-    justifyContent: "center",
-  },
-  reactLogo: {
-    position: "absolute",
-    right: `-100px`,
-    top: "30%",
-    height: `300px`,
-    width: `300px`,
-    opacity: 0.2,
-  },
-  sectionContainer: {
-    marginBottom: `${theme.space24}px`,
-  },
-  content: {
-    paddingTop: `${theme.space16}px`,
-    paddingLeft: `${theme.space16}px`,
-    paddingRight: `${theme.space16}px`,
-  },
-} as const;

@@ -1,0 +1,50 @@
+.themed-view {
+  box-sizing: border-box;
+}
+.font-light {
+  font-family: var(--font-family-light);
+}
+.font-medium {
+  font-family: var(--font-family-base);
+}
+.font-bold {
+  font-family: var(--font-family-bold);
+}
+.italic {
+  font-style: italic;
+}
+.themed-view {
+  background-color: var(--color-white);
+  box-shadow: var(--shadow);
+}
+
+.themed-text {
+  color: var(--color-black);
+  font-family: 'FreightSansProBook-Regular';
+  &.font-light {
+    font-family: 'FreightSansProLight-Regular';
+  }
+  &.font-bold {
+    font-family: 'FreightSansProBold-Regular';
+  }
+  &.italic {
+    font-family: 'FreightSansProBook-Italic';
+    &.font-light {
+      font-family: 'FreightSansProLight-Italic';
+    }
+    &.font-bold {
+      font-family: 'FreightSansProBold-Italic';
+    }
+  }
+}
+
+
+
+.dark {
+  & .themed-view {
+    background-color: var(--color-dark-blue);
+  }
+  & .themed-text {
+    color: var(--color-white);
+  }
+}

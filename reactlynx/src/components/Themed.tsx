@@ -1,72 +1,57 @@
-import { theme } from "../theme.js";
 import type {
   Modify,
   TextProps as TextPropsType,
   ViewProps as ViewPropsType,
   CSSProperties,
 } from "@lynx-js/types";
-
-type ThemeProps = {
-  lightColor?: string;
-  darkColor?: string;
-};
+import './Themed.css'
 
 export type TextProps = Modify<
-  ThemeProps & {
+ {
     marginBottom?: string;
     fontSize?: CSSProperties["fontSize"];
     fontWeight?: "light" | "medium" | "bold";
     italic?: boolean;
     animated?: boolean;
+    className?: string;
   } & TextPropsType,
   {
     style?: CSSProperties;
   }
 >;
 export type ViewProps = Modify<
-  ThemeProps & ViewPropsType & { animated?: boolean },
+  ViewPropsType & { animated?: boolean; className?: string },
   {
     style?: CSSProperties;
+    id?: string;
   }
 >;
-
-export function useThemeColor<T, U>(props: { light: T; dark: U }) {
-  const theme =
-    (lynx.__globalProps.theme?.toLowerCase() as "light" | "dark") ?? "light";
-  // const theme = "dark";
-  return props[theme];
-}
 
 export function ThemedText(props: TextProps) {
   const {
     style = {},
-    lightColor,
-    darkColor,
-    marginBottom = 0,
-    fontSize = `${theme.fontSize16}px`,
+    fontSize,
     fontWeight,
     italic,
     animated,
+    className,
     ...otherProps
   } = props;
-  const color = useThemeColor({
-    light: lightColor || theme.colorBlack,
-    dark: darkColor || theme.colorWhite,
-  });
-  const fontFamily = (() => {
-    if (fontWeight === "light") {
-      return italic ? theme.fontFamilyLightItalic : theme.fontFamilyLight;
-    } else if (fontWeight === "bold") {
-      return italic ? theme.fontFamilyBoldItalic : theme.fontFamilyBold;
-    } else {
-      return italic ? theme.fontFamilyItalic : theme.fontFamily;
-    }
-  })();
+
+  const classNames = [className, 'themed-text'];
+  if (fontWeight) {
+    classNames.push(`font-${fontWeight}`);
+  }
+  if (italic) {
+    classNames.push("italic");
+  }
+
   const { children, ...restProps } = otherProps;
 
   return (
     <text
-      style={{ color, marginBottom, fontSize, fontFamily, ...style }}
+      style={{ fontSize, ...style }}
+      className={classNames.join(" ")}
       {...restProps}
     >
       {otherProps.children}
@@ -75,15 +60,16 @@ export function ThemedText(props: TextProps) {
 }
 
 export function ThemedView(props: ViewProps) {
-  const { style, lightColor, darkColor, animated, ...otherProps } = props;
-  const backgroundColor = useThemeColor({
-    light: lightColor || "transparent",
-    dark: darkColor || "transparent",
-  });
+  const { style, animated, className, ...otherProps } =
+    props;
   const { children, ...restProps } = otherProps;
 
   return (
-    <view style={{ backgroundColor, ...style }} {...restProps}>
+    <view
+      style={style}
+      className={ 'themed-view ' + className}
+      {...restProps}
+    >
       {otherProps.children}
     </view>
   );
